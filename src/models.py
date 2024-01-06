@@ -12,10 +12,10 @@ class User(Base):
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    username = Column(String(250))
-    firstname = Column(String(250))
-    lastname = Column(String(250))
-    email = Column(String(250))
+    username = Column(String(250), nullable='false')
+    firstname = Column(String(250), nullable='false')
+    lastname = Column(String(250), nullable='false')
+    email = Column(String(250), nullable='false')
 
     def to_dict(self):
         return {}
@@ -65,7 +65,7 @@ class Comment(Base):
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     comment_text = Column(String(500))
-    author_id = Column(Integer,ForeignKey('post.id'))
+    author_id = Column(Integer,ForeignKey('user.id'))
     post_id = Column(Integer,ForeignKey('post.id'))
     post = relationship(User,Post)
 
